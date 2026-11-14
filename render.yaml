@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: voz-estudio-diario
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /health
+    envVars:
+      - key: TOKEN
+        generateValue: true   # Render crea un token; cópialo desde Environment y pégalo en el HTML
+      - key: ORIGINS
+        value: "*"
+      - key: PYTHON_VERSION
+        value: "3.12.3"
